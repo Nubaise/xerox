@@ -2,10 +2,14 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
+const printerRoutes = require("./routes/printer.routes");
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/printers", printerRoutes);
 
 app.get("/", (req, res) => {
     res.status(200).json({
