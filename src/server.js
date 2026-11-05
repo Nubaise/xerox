@@ -3,13 +3,12 @@ const cors = require("cors");
 require("dotenv").config();
 
 const printerRoutes = require("./routes/printer.routes");
+const bookingRoutes = require("./routes/booking.routes");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-app.use("/printers", printerRoutes);
 
 app.get("/", (req, res) => {
     res.status(200).json({
@@ -17,6 +16,9 @@ app.get("/", (req, res) => {
         message: "Paper Jam API is running!"
     });
 });
+
+app.use("/printers", printerRoutes);
+app.use("/bookings", bookingRoutes);
 
 const PORT = process.env.PORT || 5000;
 
